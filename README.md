@@ -29,3 +29,9 @@ $ export OPENAI_API_KEY=...
 $ dune test
 res: 枕草子によると、秋は「夕暮れ」です。
 ```
+
+We can also connect to a [llamma.cpp](https://github.com/ggerganov/llama.cpp) local server by changing the client creation to
+
+```ocaml
+let client = Client.create ~secure:false ~host:"localhost" ~port:8080 "nokey" in
+```
