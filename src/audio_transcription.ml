@@ -3,14 +3,14 @@ let endpoint = "/v1/audio/transcriptions"
 open Basic.Audio
 
 let send
-  (client : Client.t)
-  ~(file : Basic.file_format)
-  ?(model = "whisper-1")
-  ?prompt
-  ?(response_format = `Json)
-  ?temperature
-  ?language
-  ()
+      (client : Client.t)
+      ~(file : Basic.file_format)
+      ?(model = "whisper-1")
+      ?prompt
+      ?(response_format = `Json)
+      ?temperature
+      ?language
+      ()
   =
   (* https://github.com/janestreet/ppx_yojson_conv/issues/18 *)
   let open Ppx_yojson_conv_lib.Yojson_conv.Primitives in

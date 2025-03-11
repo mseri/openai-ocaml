@@ -25,21 +25,21 @@ type message =
  * @param k for continuation to avoid redefining labeled parameters
  *)
 let send_raw_k
-  k
-  (client : Client.t)
-  ?(model = "gpt-4o-mini")
-  ?max_tokens
-  ~messages
-  ?temperature
-  ?top_p
-  ?stream
-  ?n
-  ?stop
-  ?frequency_penalty
-  ?logit_bias
-  ?presence_penalty
-  ?user
-  ()
+      k
+      (client : Client.t)
+      ?(model = "gpt-4o-mini")
+      ?max_tokens
+      ~messages
+      ?temperature
+      ?top_p
+      ?stream
+      ?n
+      ?stop
+      ?frequency_penalty
+      ?logit_bias
+      ?presence_penalty
+      ?user
+      ()
   =
   let temperature = Json.to_field_opt "temperature" yojson_of_float temperature in
   let top_p = Json.to_field_opt "top_p" yojson_of_float top_p in

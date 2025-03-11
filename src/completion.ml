@@ -1,23 +1,23 @@
 let endpoint = "/v1/completions"
 
 let send
-  (client : Client.t)
-  ?(model = "gpt-3.5-turbo")
-  ?max_tokens
-  ?prompt
-  ?suffix
-  ?temperature
-  ?top_p
-  ?n
-  ?logprobs
-  ?echo
-  ?stop
-  ?precense_penalty
-  ?frequency_penalty
-  ?best_of
-  ?logit_bias
-  ?user
-  ()
+      (client : Client.t)
+      ?(model = "gpt-3.5-turbo")
+      ?max_tokens
+      ?prompt
+      ?suffix
+      ?temperature
+      ?top_p
+      ?n
+      ?logprobs
+      ?echo
+      ?stop
+      ?precense_penalty
+      ?frequency_penalty
+      ?best_of
+      ?logit_bias
+      ?user
+      ()
   =
   let max_tokens = Json.to_field_opt "max_tokens" (fun x -> `Int x) max_tokens in
   let prompt = Json.to_field_opt "prompt" (fun x -> `String x) prompt in
@@ -78,8 +78,8 @@ let send
     Json.(
       member "choices" json
       |> (function
-      | [%yojson? [ res ]] ->
-        Lwt.return Json.(member "text" res |> to_string |> String.trim)
-      | _ -> Lwt.fail_with "Unexpected response"))
+       | [%yojson? [ res ]] ->
+         Lwt.return Json.(member "text" res |> to_string |> String.trim)
+       | _ -> Lwt.fail_with "Unexpected response"))
   | Error (_code, e) -> Lwt.fail_with e
 ;;

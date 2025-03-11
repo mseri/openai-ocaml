@@ -1,7 +1,10 @@
 open Openai
 
 let run () =
-  let api_key = "ollama-local" (* Sys.getenv "OPENAI_API_KEY" *) in
+  let api_key =
+    "ollama-local"
+    (* Sys.getenv "OPENAI_API_KEY" *)
+  in
   let client = Client.create ~secure:false ~host:"localhost" ~port:11434 api_key in
   ignore
   @@ Lwt_main.run

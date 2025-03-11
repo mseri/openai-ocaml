@@ -3,14 +3,14 @@ let endpoint = "/v1/images/generations"
 open Basic.Images
 
 let send_raw
-  k
-  (client : Client.t)
-  ~prompt
-  ?n
-  ?(size = (`S1024_1024 : size))
-  ?(response_format = (`Url : response_format))
-  ?user
-  ()
+      k
+      (client : Client.t)
+      ~prompt
+      ?n
+      ?(size = (`S1024_1024 : size))
+      ?(response_format = (`Url : response_format))
+      ?user
+      ()
   =
   (* https://github.com/janestreet/ppx_yojson_conv/issues/18 *)
   let open Ppx_yojson_conv_lib.Yojson_conv.Primitives in
@@ -50,16 +50,16 @@ let send_raw
 let send =
   send_raw
   @@ fun ~response_format ~size:_ -> function
-       | Ok { body; _ } ->
-         let json = Yojson.Safe.from_string body in
-         Lwt.return
-           Json.(
-             json
-             |> member "data"
-             |> to_list
-             |> List.map
-                @@ fun e ->
-                ( response_format
-                , e |> member (string_of_response_format response_format) |> to_string ))
-       | Error (_code, e) -> Lwt.fail_with e
+  | Ok { body; _ } ->
+    let json = Yojson.Safe.from_string body in
+    Lwt.return
+      Json.(
+        json
+        |> member "data"
+        |> to_list
+        |> List.map
+           @@ fun e ->
+           ( response_format
+           , e |> member (string_of_response_format response_format) |> to_string ))
+  | Error (_code, e) -> Lwt.fail_with e
 ;;

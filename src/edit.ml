@@ -1,14 +1,14 @@
 let endpoint = "/v1/edits"
 
 let send
-  (client : Client.t)
-  ?(model = "text-davinci-edit-001")
-  ?input
-  ~instruction
-  ?n
-  ?temperature
-  ?top_p
-  ()
+      (client : Client.t)
+      ?(model = "text-davinci-edit-001")
+      ?input
+      ~instruction
+      ?n
+      ?temperature
+      ?top_p
+      ()
   =
   (* https://github.com/janestreet/ppx_yojson_conv/issues/18 *)
   let open Ppx_yojson_conv_lib.Yojson_conv.Primitives in
@@ -48,8 +48,8 @@ let send
     Json.(
       member "choices" json
       |> (function
-      | [%yojson? [ res ]] ->
-        res |> member "text" |> to_string |> String.trim |> Lwt.return
-      | _ -> Lwt.fail_with @@ Printf.sprintf "Unexpected response: %s" body))
+       | [%yojson? [ res ]] ->
+         res |> member "text" |> to_string |> String.trim |> Lwt.return
+       | _ -> Lwt.fail_with @@ Printf.sprintf "Unexpected response: %s" body))
   | Error (_code, e) -> Lwt.fail_with e
 ;;
