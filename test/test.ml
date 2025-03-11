@@ -1,14 +1,15 @@
 open Openai
 
 let run () =
-  let api_key = Sys.getenv "OPENAI_API_KEY" in
-  let client = Client.create api_key in
+  let api_key = "ollama-local" (* Sys.getenv "OPENAI_API_KEY" *) in
+  let client = Client.create ~secure:false ~host:"localhost" ~port:11434 api_key in
   ignore
   @@ Lwt_main.run
   @@ Lwt.bind
        Chat_completion.(
          send
            client
+           ~model:"qwen2.5:3b"
            ~temperature:0.0
            ~max_tokens:22
            ~messages:

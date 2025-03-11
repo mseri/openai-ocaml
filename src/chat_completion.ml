@@ -27,7 +27,7 @@ type message =
 let send_raw_k
   k
   (client : Client.t)
-  ?(model = "gpt-3.5-turbo")
+  ?(model = "gpt-4o-mini")
   ?max_tokens
   ~messages
   ?temperature
