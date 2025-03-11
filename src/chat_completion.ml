@@ -1,3 +1,6 @@
+(* https://github.com/janestreet/ppx_yojson_conv/issues/18 *)
+open Ppx_yojson_conv_lib.Yojson_conv.Primitives
+
 let endpoint = "/v1/chat/completions"
 
 type role =

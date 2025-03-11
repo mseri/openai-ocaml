@@ -1,3 +1,6 @@
+(* https://github.com/janestreet/ppx_yojson_conv/issues/18 *)
+open Ppx_yojson_conv_lib.Yojson_conv.Primitives
+
 type file_format =
   [ `Binary of string
   | `File of string

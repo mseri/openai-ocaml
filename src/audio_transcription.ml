@@ -12,6 +12,8 @@ let send
   ?language
   ()
   =
+  (* https://github.com/janestreet/ppx_yojson_conv/issues/18 *)
+  let open Ppx_yojson_conv_lib.Yojson_conv.Primitives in
   let%lwt file = Basic.read_file file in
   let prompt = Json.to_field_opt "prompt" yojson_of_string prompt in
   let temperature = Json.to_field_opt "temperature" yojson_of_float temperature in

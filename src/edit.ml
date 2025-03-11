@@ -10,6 +10,8 @@ let send
   ?top_p
   ()
   =
+  (* https://github.com/janestreet/ppx_yojson_conv/issues/18 *)
+  let open Ppx_yojson_conv_lib.Yojson_conv.Primitives in
   let input = Json.to_field_opt "input" yojson_of_string input in
   let n = Json.to_field_opt "n" yojson_of_int n in
   let temperature = Json.to_field_opt "temperature" yojson_of_float temperature in

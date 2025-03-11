@@ -12,6 +12,8 @@ let send_raw
   ?user
   ()
   =
+  (* https://github.com/janestreet/ppx_yojson_conv/issues/18 *)
+  let open Ppx_yojson_conv_lib.Yojson_conv.Primitives in
   let n = Json.to_field_opt "n" yojson_of_int n in
   let user = Json.to_field_opt "top_p" yojson_of_string user in
   let response_format' =
